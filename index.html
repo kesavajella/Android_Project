@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Showcase - Android Studio</title>
+    <style>
+        /* CSS: Modern Vibrant Design */
+        :root {
+            --primary: #6C63FF;
+            --secondary: #00F2FE;
+            --accent: #FF0072;
+            --dark-bg: #0f0c29;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* App Name Section */
+        .app-header {
+            padding: 40px 20px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .app-name-badge {
+            display: inline-block;
+            background: var(--accent);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .app-title {
+            font-size: 3rem;
+            margin: 0;
+            background: linear-gradient(to right, #fff, var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Main Content Wrapper */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Download Section - Full Width */
+        .download-section {
+            width: 100%;
+            max-width: 1000px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 50px 20px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-sizing: border-box;
+        }
+
+        .download-btn {
+            display: block; /* Makes it full width inside container */
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .download-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(108, 99, 255, 0.4);
+        }
+
+        /* Watch Section */
+        .watch-section {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .watch-link {
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            transition: 0.3s;
+        }
+
+        .watch-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* Video Modal (Full Screen) */
+        #videoModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 90%;
+            max-width: 1000px;
+        }
+
+        video {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(0,242,254,0.3);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Responsive UI */
+        @media (max-width: 600px) {
+            .app-title { font-size: 2rem; }
+            .download-btn { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="app-header">
+        <span class="app-name-badge">Android Studio Project</span>
+        <h1 class="app-title">COVID VACCINATION APP</h1>
+    </header>
+
+    <div class="main-content">
+        <div class="download-section">
+            <h2>Ready to explore?</h2>
+            <p>Download the latest version of our APK for Android devices.</p>
+            <br>
+            <a href="my-app.apk" download="Proxima_v1.apk" class="download-btn" id="downloadBtn">
+                📥 DOWNLOAD APK NOW
+            </a>
+            <p style="margin-top: 15px; font-size: 0.8rem;">Size: 15.4 MB | Version: 1.0.1</p>
+        </div>
+
+        <div class="watch-section">
+            <div class="watch-link" onclick="openVideo()">
+                <span>▶ See how it works</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="videoModal">
+        <div class="video-wrapper">
+            <span class="close-btn" onclick="closeVideo()">&times;</span>
+            <video id="demoVideo" controls>
+                <source src="demo-video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Kesava Krishna Pavan. All Rights Reserved.</p>
+            <p>Designed for Blogspot & Android Developers</p>
+            <div style="margin-top: 10px;">
+                <small>Privacy Policy | Terms of Service</small>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const modal = document.getElementById('videoModal');
+        const video = document.getElementById('demoVideo');
+
+        // Function to open full screen video
+        function openVideo() {
+            modal.style.display = 'flex';
+            video.play();
+        }
+
+        // Function to close video
+        function closeVideo() {
+            modal.style.display = 'none';
+            video.pause();
+            video.currentTime = 0;
+        }
+
+        // Close modal if user clicks outside the video
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeVideo();
+            }
+        }
+
+        // Simple download alert
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            console.log("Download started...");
+        });
+    </script>
+
+</body>
+</html>
