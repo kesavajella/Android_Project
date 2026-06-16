@@ -199,14 +199,15 @@
     </div>
 
     <div id="videoModal">
-        <div class="video-wrapper">
-            <span class="close-btn" onclick="closeVideo()">&times;</span>
-            <video id="demoVideo" controls>
-                <source src="sss%5B1%5D.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
+    <div class="video-wrapper">
+        <span class="close-btn" onclick="closeVideo()">&times;</span>
+        <!-- Added preload, playsinline, and explicit codec mapping -->
+        <video id="demoVideo" controls preload="auto" playsinline webkit-playsinline>
+            <source src="sss%5B1%5D.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+            Your browser does not support the video tag.
+        </video>
     </div>
+</div>
 
     <footer>
         <div class="footer-content">
