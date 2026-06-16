@@ -120,7 +120,7 @@
             text-decoration: underline;
         }
 
-        /* Video Modal (Full Screen) */
+        /* Video Modal (Full Screen Layout Optimized for Portrait Video) */
         #videoModal {
             display: none;
             position: fixed;
@@ -136,24 +136,33 @@
 
         .video-wrapper {
             position: relative;
-            width: 90%;
-            max-width: 1000px;
+            width: auto;
+            height: 80vh; 
+            max-width: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         video {
-            width: 100%;
-            border-radius: 10px;
+            height: 100%;
+            width: auto;
+            max-width: 100%;
+            border-radius: 15px;
             box-shadow: 0 0 50px rgba(0,242,254,0.3);
+            object-fit: contain;
+            background: #000;
         }
 
         .close-btn {
             position: absolute;
-            top: -50px;
-            right: 0;
+            top: -45px;
+            right: 10px;
             color: white;
             font-size: 40px;
             cursor: pointer;
             font-weight: bold;
+            z-index: 1001;
         }
 
         /* Footer */
@@ -170,6 +179,13 @@
         @media (max-width: 600px) {
             .app-title { font-size: 2rem; }
             .download-btn { font-size: 1.1rem; }
+            .video-wrapper {
+                height: 75vh;
+            }
+            .close-btn {
+                top: -50px;
+                right: 5px;
+            }
         }
     </style>
 </head>
@@ -199,15 +215,14 @@
     </div>
 
     <div id="videoModal">
-    <div class="video-wrapper">
-        <span class="close-btn" onclick="closeVideo()">&times;</span>
-        <!-- Added preload, playsinline, and explicit codec mapping -->
-        <video id="demoVideo" controls preload="auto" playsinline webkit-playsinline>
-            <source src="sss%5B1%5D.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-            Your browser does not support the video tag.
-        </video>
+        <div class="video-wrapper">
+            <span class="close-btn" onclick="closeVideo()">&times;</span>
+            <video id="demoVideo" controls preload="auto" playsinline webkit-playsinline>
+                <source src="sss%5B1%5D.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+                Your browser does not support the video tag.
+            </video>
+        </div>
     </div>
-</div>
 
     <footer>
         <div class="footer-content">
